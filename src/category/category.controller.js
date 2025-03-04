@@ -2,78 +2,107 @@
 
 import Category from './category.model.js';
 
-export const getCategories = async (req, res) => {
-  try {
-
-    const categories = await Category.find();
-
-    res.status(200).json({ message: 'Lista de categorías obtenida', categories })
-
-  } catch (error) {
-    res.status(500).json({ message: 'Error al obtener categorías', error })
-  }
-}
-
 export const getCategoryById = async (req, res) => {
   try {
+    const {uid} = req.params
+    const category = await Category.findById(uid)
 
-    const category = await Category.findById(req.params.id)
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: 'Categoría no encontrada',
+      })
+    }
 
-    if (!category) return res.status(404).json({ message: 'Categoría no encontrada' })
+    return res.status(200).json({
+      success: true,
+      category,
+    })
 
-    res.status(200).json({ message: 'Categoría encontrada', category })
-
-  } catch (error) {
-    res.status(500).json({ message: 'Error al obtener la categoría', error })
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: 'Error al obtener la categoría',
+      error: err.message,
+    })
   }
 }
 
-export const createCategory = async (req, res) => {
+export const getCategories = async (req, res) => {
   try {
+    const categories = await Category.find()
+    return res.status(200).json({
+      message: 'Lista de categorías obtenida exitosamente',
+      categories,
+    })
 
-    const { name, description } = req.body;
+  } catch (err) {
+    return res.status(500).json({
+      message: 'Error al obtener las categorías',
+      error: err.message,
+    })
+  }
+}
 
-    const category = new Category({ name, description })
+export const deleteCategory = async (req, res) => {
+  try {
+    const {uid} = req.params
+    const category = await Category.findByIdAndUpdate(uid, { status: false }, { new: true })
 
-    await category.save()
+    return res.status(200).json({
+      success: true,
+      message: 'Categoría desactivada exitosamente',
+      category,
+    })
 
-    res.status(201).json({ message: 'Categoría creada exitosamente', category })
-
-  } catch (error) {
-    res.status(500).json({ message: 'Error al crear la categoría', error })
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: 'Error al desactivar la categoría',
+      error: err.message,
+    })
   }
 }
 
 export const updateCategory = async (req, res) => {
   try {
+    const {uid} = req.params;
+    const data = req.body;
 
-    const { name, description } = req.body;
+    const category = await Category.findByIdAndUpdate(uid, data, { new: true })
 
-    const updatedCategory = await Category.findByIdAndUpdate(
-      req.params.id,
-      { name, description },
-      { new: true }
-    )
-
-    if (!updatedCategory) return res.status(404).json({ message: 'Categoría no encontrada' })
-
-    res.status(200).json({ message: 'Categoría actualizada', updatedCategory })
-
-  } catch (error) {
-    res.status(500).json({ message: 'Error al actualizar la categoría', error })
+    return res.status(200).json({
+      success: true,
+      msg: 'Categoría actualizada',
+      category,
+    })
+    
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      msg: 'Error al actualizar la categoría',
+      error: err.message,
+    })
   }
 }
 
-export const deleteCategory = async (req, res) => {
-    try {
+export const createCategory = async (req, res) => {
+  try {
+    const { name, description } = req.body;
+    const category = new Category({ name, description });
+    await category.save();
 
-      const category = await Category.findByIdAndUpdate(req.params.id, { status: false }, { new: true })
+    return res.status(201).json({
+      success: true,
+      message: 'Categoría creada exitosamente',
+      category,
+    })
 
-      if (!category) return res.status(404).json({ message: 'Categoría no encontrada' })
-
-      res.status(200).json({ message: 'Categoría desactivada', category })
-
-    } catch (error) {
-      res.status(500).json({ message: 'Error al desactivar la categoría', error })
-    }
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: 'Error al crear la categoría',
+      error: err.message,
+    })
+  }
 }

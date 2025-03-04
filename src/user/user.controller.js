@@ -1,14 +1,22 @@
 `use strict`;
 
-import { hash } from "argon2";
+import { hash, verify } from "argon2";
+import fs from "fs/promises"
+import { join, dirname } from "path"
+import { fileURLToPath } from "url"
 import User from "./user.model.js";
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
 
 export const defaultAdmin = async () => {
   const defaultAdmin = {
       "name": "Anderson",
+      "username": "ZiloyTA59",
+      "password": "Ziloyta.269",
+      "profilePicture": "la wea o lo que sea.jpg",
       "email": "alopez-2023269@gmail.com",
       "phone": "35978171",
-      "password": "Ziloyta.269",
       "role": "ADMIN_ROLE"
   }
 
@@ -21,8 +29,8 @@ export const defaultAdmin = async () => {
 
 export const getUserById = async (req, res) => {
   try {
-    const { uid } = req.user;
-    const user = await User.findById(uid)
+    const _id = req.user;
+    const user = await User.findById(_id)
 
     if (!user) {
       return res.status(404).json({
@@ -64,93 +72,135 @@ export const getUsers = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
-    const { uid } = req.params;
-    const user = await User.findByIdAndUpdate(uid, { status: false }, { new: true });
+      const _id = req.user
 
-    return res.status(200).json({
-      success: true,
-      message: "Usuario eliminado",
-      user,
-    })
-    
+      const user = await User.findByIdAndUpdate(_id, { status: false }, { new: true });
+
+      return res.status(200).json({
+          success: true,
+          message: "Usuario eliminado exitosamente",
+          user
+      })
+
   } catch (err) {
-    return res.status(500).json({
-      success: false,
-      message: "Error al eliminar el usuario",
-      error: err.message,
-    })
+      return res.status(500).json({
+          success: false,
+          message: "Error al eliminar al usuario",
+          error: err.message
+      })
   }
 }
 
 export const updateUser = async (req, res) => {
   try {
-      const { uid } = req.params;
-      const { name, username, email } = req.body;
+      const _id = req.user;
+      const data = req.body;
 
-      const updatedUser = await User.findByIdAndUpdate(
-          uid,
-          { name, username, email },
-          { new: true, runValidators: true }
-      ).select("-password");
+      console.log(_id)
+      const user = await User.findByIdAndUpdate(_id, data, { new: true });
 
-      if (!updatedUser) {
-          return res.status(404).json({
-              success: false,
-              message: "Usuario no encontrado",
-          })
-      }
+      res.status(200).json({
+          success: true,
+          msg: 'User updated',
+          user,
+      });
+  } catch (err) {
+      res.status(500).json({
+          success: false,
+          msg: 'Error while updating the user',
+          error: err.message
+      });
+  }
+}
 
+export const updateRole = async (req,res) =>{
+  try{
+      const {uid} = req.params
+      const {role} = req.body
+
+      const user = await User.findByIdAndUpdate(uid,role,{new: true})
+      
       return res.status(200).json({
           success: true,
-          message: "Usuario actualizado exitosamente",
-          user: updatedUser,
-      })
-
-  } catch (err) {
+          message: "Rol acctualizado exitosamente",
+          user
+      });
+     
+  }catch(err){
       return res.status(500).json({
           success: false,
-          message: "Error al actualizar el usuario",
-          error: err.message,
+          message: "Error al actualizar role",
+          error: err.message
       })
   }
 }
 
-export const updateUserRole = async (req, res) => {
+export const updateProfilePicture = async (req, res) => {
   try {
-      const { uid } = req.params;
-      const { role } = req.body;
+      const { _id } = req.usuario;
+      let newProfilePicture = req.file ? req.file.filename : null;
 
-      if (!["ADMIN_ROLE", "CLIENT_ROLE"].includes(role)) {
+      if (!newProfilePicture) {
           return res.status(400).json({
               success: false,
-              message: "Rol no válido. Debe ser 'ADMIN' o 'CLIENT'.",
+              msg: 'No se ha proporcionado ninguna foto de perfil.',
           });
       }
 
-      const updatedUser = await User.findByIdAndUpdate(
-          uid,
-          { role },
-          { new: true, runValidators: true }
-      ).select("-password")
+      const user = await User.findById(_id);
+      
 
-      if (!updatedUser) {
-          return res.status(404).json({
+      if (user.profilePicture) {
+          const oldProfilePicturePath = join(__dirname, "../../public/uploads/profile-pictures", user.profilePicture);
+          await fs.unlink(oldProfilePicturePath)
+      }
+
+      user.profilePicture = newProfilePicture;
+      await user.save();
+
+      res.status(200).json({
+          success: true,
+          msg: 'Foto de perfil actualizada',
+          user,
+      })
+  } catch (err) {
+      res.status(500).json({
+          success: false,
+          msg: 'Error al actualizar la foto de perfil',
+          error: err.message
+      })
+  }
+}
+
+export const updatePassword = async(req,res) =>{
+  try {
+      const  _id  = req.usuario;
+      const { newPassword } = req.body;
+
+      const user = await User.findById(_id)
+
+      const matchOldAndNewPassword = await verify(user.password, newPassword);
+
+      if (matchOldAndNewPassword) {
+          return res.status(400).json({
               success: false,
-              message: "Usuario no encontrado",
+              message: "La nueva contraseña no puede ser la misma que la anterior."
           })
       }
 
+      const encryptedPassword = await hash(newPassword);
+
+      await User.findByIdAndUpdate(_id, { password: encryptedPassword }, { new: true });
+
       return res.status(200).json({
           success: true,
-          message: "Rol de usuario actualizado exitosamente",
-          user: updatedUser,
+          message: "Contraseña actualizada exitosamente",
       })
-
   } catch (err) {
       return res.status(500).json({
           success: false,
-          message: "Error al actualizar el rol del usuario",
-          error: err.message,
+          message: "Error al actualizar la contraseña",
+          error: err.message
       })
   }
 }

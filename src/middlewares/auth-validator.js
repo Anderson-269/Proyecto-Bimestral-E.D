@@ -1,9 +1,11 @@
 `use strict`;
 
 import { body } from "express-validator";
-import { emailExists } from "../helpers/db-validators.js";
+import { emailExists, usernameExists } from "../helpers/db-validators.js";
 import { validarCampos } from "./validate-fields.js";
 import { handleErrors } from "./handle-errors.js";
+import { deleteFileOnError } from "./delete-file-on-error.js";
+import { isActive } from "./validate-status.js";
 
 export const registerValidator = [
     body("name").notEmpty().withMessage("El nombre es requerido"),
@@ -19,11 +21,13 @@ export const registerValidator = [
         minNumbers: 1,
         minSymbols: 1
     }).withMessage("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo"),
+    deleteFileOnError,
     validarCampos,
     handleErrors
 ]
 
 export const loginValidator = [
+    isActive(),
     body("email").optional().isEmail().withMessage("No es un email válido"),
     body("username").optional().isString().withMessage("El username debe ser un texto"),
     body("password").isStrongPassword({

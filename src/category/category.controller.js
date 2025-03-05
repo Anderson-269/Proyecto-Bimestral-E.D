@@ -2,10 +2,22 @@
 
 import Category from './category.model.js';
 
-export const getCategoryById = async (req, res) => {
+export const defaultCategory = async () => {
+  const defaultCategory = {
+      "name": "Electrónica",
+      "description": "Dispositivos electrónicos y accesorios"
+  }
+
+  const category = await Category.findOne({name: defaultCategory.name})
+  if(!category){
+      await Category.create(defaultCategory)
+  }
+}
+
+export const getCategoryByName = async (req, res) => {
   try {
-    const {uid} = req.params
-    const category = await Category.findById(uid)
+    const { name } = req.params;
+    const category = await Category.findOne({ name })
 
     if (!category) {
       return res.status(404).json({
@@ -88,9 +100,8 @@ export const updateCategory = async (req, res) => {
 
 export const createCategory = async (req, res) => {
   try {
-    const { name, description } = req.body;
-    const category = new Category({ name, description });
-    await category.save();
+    const data = req.body
+    const category = await Category.create(data)
 
     return res.status(201).json({
       success: true,

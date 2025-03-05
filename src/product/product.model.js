@@ -13,11 +13,8 @@ const productSchema = Schema({
     },
     category:{
         type: Schema.Types.ObjectId, 
-        ref: 'Category'
-    },
-    products:{
-        type: Schema.Types.ObjectId,
-        ref: 'Product'
+        ref: 'Category',
+        required: true
     },
     brand:{
         type: String,
@@ -25,11 +22,13 @@ const productSchema = Schema({
     },
     stock:{
         type: Number,
-        default: 1
+        default: 1,
+        min: 0
     },
     soldCantity:{
         type: Number,
-        default: 0
+        default: 0,
+        min: 0
     },  
     status:{
         type: Boolean,
@@ -38,7 +37,7 @@ const productSchema = Schema({
 },
 {
     versionKey: false,
-    timeStamps: true
+    timestamps: true
 })
 
 productSchema.methods.toJSON = function () {
@@ -47,5 +46,4 @@ productSchema.methods.toJSON = function () {
     return product;
 }
     
-
 export default model("Product", productSchema)

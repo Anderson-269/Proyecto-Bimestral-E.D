@@ -1,6 +1,7 @@
 'use strict';
 
 import Category from './category.model.js';
+import Product from './product.model.js';
 
 export const defaultCategory = async () => {
   const defaultCategory = {
@@ -42,7 +43,8 @@ export const getCategoryByName = async (req, res) => {
 
 export const getCategories = async (req, res) => {
   try {
-    const categories = await Category.find()
+    const categories = await Category.find().select("name description status")
+    
     return res.status(200).json({
       message: 'Lista de categorías obtenida exitosamente',
       categories,
@@ -58,12 +60,20 @@ export const getCategories = async (req, res) => {
 
 export const deleteCategory = async (req, res) => {
   try {
-    const {uid} = req.params
-    const category = await Category.findByIdAndUpdate(uid, { status: false }, { new: true })
+    const { uid } = req.params;
+
+    const defaultCategory = await Category.findOne({ name: "Electrónica" });
+    if (!defaultCategory) {
+      return res.status(500).json({ message: "No se encontró la categoría predeterminada" });
+    }
+
+    await Product.updateMany({ category: uid }, { category: defaultCategory._id });
+    
+    const category = await Category.findByIdAndUpdate(uid, { status: false }, { new: true });
 
     return res.status(200).json({
       success: true,
-      message: 'Categoría desactivada exitosamente',
+      message: 'Categoría desactivada y productos reasignados',
       category,
     })
 
@@ -78,7 +88,7 @@ export const deleteCategory = async (req, res) => {
 
 export const updateCategory = async (req, res) => {
   try {
-    const {uid} = req.params;
+    const { uid } = req.params;
     const data = req.body;
 
     const category = await Category.findByIdAndUpdate(uid, data, { new: true })
@@ -108,7 +118,6 @@ export const createCategory = async (req, res) => {
       message: 'Categoría creada exitosamente',
       category,
     })
-
   } catch (err) {
     return res.status(500).json({
       success: false,

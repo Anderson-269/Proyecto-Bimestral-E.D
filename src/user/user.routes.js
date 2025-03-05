@@ -1,7 +1,6 @@
 import { Router } from "express";
-
-import { getUserById, getUsers, updatePassword, updateUser, updateProfilePicture, deleteUser, updateRole } from "./user.controller.js";
-import { updatePasswordValidator, getUserByIdValidator, getUsersValidator, updateUserValidator, updateProfilePictureValidator, deleteUserValidator, changeRoleValidator } from "../middlewares/user-validator.js";
+import { activateUser, getUserById, getUsers, updatePassword, updateUser, updateProfilePicture, deleteUser, updateRole, updateUserAdmin } from "./user.controller.js";
+import { validateActivateUser, updatePasswordValidator, getUserByIdValidator, getUsersValidator, updateUserValidator, updateProfilePictureValidator, deleteUserValidator, changeRoleValidator, updateUserAdminValidator } from "../middlewares/user-validator.js";
 import { uploadProfilePicture } from "../middlewares/multer-upload.js";
 
 const router = Router();
@@ -25,7 +24,7 @@ const router = Router();
  *       404:
  *         description: Usuario no encontrado
  */
-router.get("/findUser/:uid", getUserByIdValidator, getUserById);
+router.get("/findUser", getUserByIdValidator, getUserById);
 
 /**
  * @swagger
@@ -59,7 +58,7 @@ router.get("/", getUsersValidator, getUsers);
  *       200:
  *         description: Contraseña actualizada exitosamente
  */
-router.patch("/updatePassword", updatePasswordValidator,updatePassword)
+router.patch("/updatePassword", updatePasswordValidator, updatePassword)
 
 /**
  * @swagger
@@ -84,7 +83,7 @@ router.patch("/updatePassword", updatePasswordValidator,updatePassword)
  *       200:
  *         description: Usuario actualizado exitosamente
  */
-router.put("/updateUser",updateUserValidator,updateUser)
+router.put("/updateUser", updateUserValidator, updateUser);
 
 /**
  * @swagger
@@ -106,19 +105,28 @@ router.put("/updateUser",updateUserValidator,updateUser)
  *       200:
  *         description: Foto de perfil actualizada
  */
-router.patch("/updateProfilePicture", uploadProfilePicture.single("profilePicture"), updateProfilePictureValidator, updateProfilePicture)
+router.patch("/updateProfilePicture", uploadProfilePicture.single("profilePicture"), updateProfilePictureValidator, updateProfilePicture);
 
 /**
  * @swagger
- * /onlineSale/v1/user/deleteUser:
+ * /onlineSale/v1/user/deleteUser/{uid}:
  *   delete:
  *     summary: Eliminar usuario
  *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: uid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del usuario a eliminar
  *     responses:
  *       200:
  *         description: Usuario eliminado exitosamente
+ *       404:
+ *         description: Usuario no encontrado
  */
-router.delete("/deleteUser", deleteUserValidator, deleteUser)
+router.patch("/deleteUser/:uid", deleteUserValidator, deleteUser);
 
 /**
  * @swagger
@@ -146,7 +154,50 @@ router.delete("/deleteUser", deleteUserValidator, deleteUser)
  *     responses:
  *       200:
  *         description: Rol actualizado exitosamente
+ *       400:
+ *         description: Error al actualizar rol
  */
-router.patch("/updateRole/:uid", changeRoleValidator, updateRole)
+router.patch("/updateRole/:uid", changeRoleValidator, updateRole);
 
-export default router
+/**
+ * @swagger
+ * /onlineSale/v1/user/updateUserAdmin/{uid}:
+ *   put:
+ *     summary: Actualizar información de usuario como administrador
+ *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: uid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del usuario
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *               status:
+ *                 type: boolean
+ *                 description: Estado de activación del usuario
+ *     responses:
+ *       200:
+ *         description: Usuario actualizado exitosamente
+ *       404:
+ *         description: Usuario no encontrado
+ */
+router.put("/updateUserAdmin/:uid", updateUserAdminValidator, updateUserAdmin);
+
+// Ruta para activar al usuario (cambiar su estado a activo)
+router.patch('/activate/:uid', activateUser, validateActivateUser);
+
+
+export default router;

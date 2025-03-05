@@ -19,27 +19,27 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Saul",
+									"value": "Derian",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "SaulD",
+									"value": "Pusaka",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "pntr.burras5K",
+									"value": "viva.Maduro17",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "sauld-2023267@gmail.com",
+									"value": "pusake-2023346@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "phone",
-									"value": "87654321",
+									"value": "49656514",
 									"type": "text"
 								},
 								{
@@ -124,7 +124,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDExMjk2NjMsImV4cCI6MTc0MTEzMzI2M30.RD5lK32OLw09GmDtfs0y9hv-4IPuhSjr_ZTcafU4GKM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDEyMTM2NDAsImV4cCI6MTc0MTIxNzI0MH0.TRx1Xwheg4Se7gnDa3CKFMj0OedEycPWxjFh1gsUZVA",
 									"type": "string"
 								}
 							]
@@ -158,12 +158,605 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Obtener Usuario por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDEyMTEwMjMsImV4cCI6MTc0MTIxNDYyM30.FmFCg96MbsC_h631iNHbLdfeDhbLFQDoyGxC8fuJimI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/user/findUser",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"user",
+								"findUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDEyMTEwMjMsImV4cCI6MTc0MTIxNDYyM30.FmFCg96MbsC_h631iNHbLdfeDhbLFQDoyGxC8fuJimI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\": \"Ziloy.ta.269\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/user/updatePassword",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"user",
+								"updatePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Informacion de Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDEyMTM2NDAsImV4cCI6MTc0MTIxNzI0MH0.TRx1Xwheg4Se7gnDa3CKFMj0OedEycPWxjFh1gsUZVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ismael\",\r\n    \"username\": \"Z-AnD-269\",\r\n    \"password\": \"ziloy.ta.89\",\r\n    \"email\": \"alopez-2023269rpm@gmail.com\",\r\n    \"phone\": \"35987452\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/user/updateUser",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"user",
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desactivar User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDEyMTM2NDAsImV4cCI6MTc0MTIxNzI0MH0.TRx1Xwheg4Se7gnDa3CKFMj0OedEycPWxjFh1gsUZVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/user/deleteUser/67c8c8965a2fcb64e57d77db",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"user",
+								"deleteUser",
+								"67c8c8965a2fcb64e57d77db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiara Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDEyMTM2NDAsImV4cCI6MTc0MTIxNzI0MH0.TRx1Xwheg4Se7gnDa3CKFMj0OedEycPWxjFh1gsUZVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"ADMIN_ROLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/user/updateRole/67c8c8965a2fcb64e57d77db",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"user",
+								"updateRole",
+								"67c8c8965a2fcb64e57d77db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate User (solo para la reutilizacion)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDEyMTM2NDAsImV4cCI6MTc0MTIxNzI0MH0.TRx1Xwheg4Se7gnDa3CKFMj0OedEycPWxjFh1gsUZVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/user/activate/67c8c8965a2fcb64e57d77db",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"user",
+								"activate",
+								"67c8c8965a2fcb64e57d77db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update User solo Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDEyMTM2NDAsImV4cCI6MTc0MTIxNzI0MH0.TRx1Xwheg4Se7gnDa3CKFMj0OedEycPWxjFh1gsUZVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pusaka\",\r\n    \"username\": \"Pusakaaaaaaaa\",\r\n    \"password\": \"Pusaka.89\",\r\n    \"email\": \"pusaka-2023343@gmail.com\",\r\n    \"phone\": \"35987452\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/user/updateUserAdmin/67c786ff6f29dcd8582b8f44",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"user",
+								"updateUserAdmin",
+								"67c786ff6f29dcd8582b8f44"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "Category",
-			"item": []
+			"item": [
+				{
+					"name": "getCategories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDEyMTM2NDAsImV4cCI6MTc0MTIxNzI0MH0.TRx1Xwheg4Se7gnDa3CKFMj0OedEycPWxjFh1gsUZVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/category/getCategories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"category",
+								"getCategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategoryByName",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDEyMTM2NDAsImV4cCI6MTc0MTIxNzI0MH0.TRx1Xwheg4Se7gnDa3CKFMj0OedEycPWxjFh1gsUZVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/category/getCategoryByName/Electrónica",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"category",
+								"getCategoryByName",
+								"Electrónica"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3N2U4YzJhNjc3YWY4ZjI4ZTA3ZmEiLCJpYXQiOjE3NDEyMTM2NDAsImV4cCI6MTc0MTIxNzI0MH0.TRx1Xwheg4Se7gnDa3CKFMj0OedEycPWxjFh1gsUZVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Automóviles\",\r\n  \"description\": \"Categoría para la venta de vehículos, repuestos y accesorios automotrices.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/category/createCategory",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"category",
+								"createCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M4ZDQ0M2JhYzU4MzA5ZGVjMjhiNWYiLCJpYXQiOjE3NDEyMTY2MTMsImV4cCI6MTc0MTIyMDIxM30.zba-y3iWIB4wbxdYf-6rn6h8Ns4mFg0PZybOmRhUqnA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Electronicaa\",\r\n  \"description\": \"Dispositivos electrónicos y accesoriosssss.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/category/updateCategory/67c8c4803aa97dd13617d124",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"category",
+								"updateCategory",
+								"67c8c4803aa97dd13617d124"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M4ZDQ0M2JhYzU4MzA5ZGVjMjhiNWYiLCJpYXQiOjE3NDEyMTY2MTMsImV4cCI6MTc0MTIyMDIxM30.zba-y3iWIB4wbxdYf-6rn6h8Ns4mFg0PZybOmRhUqnA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/category/deleteCategory/67c8db0eecf4f30fe8b9a213",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"category",
+								"deleteCategory",
+								"67c8db0eecf4f30fe8b9a213"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "addProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/product/addProduct",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"product",
+								"addProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/product/getProducts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"product",
+								"getProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductsOutOfStock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/onlineSale/v1/product/getProductsOutOfStock",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"onlineSale",
+								"v1",
+								"product",
+								"getProductsOutOfStock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProduct",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"method": "PATCH",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getProductByName",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

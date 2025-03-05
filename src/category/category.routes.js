@@ -50,7 +50,7 @@ router.get('/getCategories', getCategoriesValidator, getCategories)
 
 /**
  * @swagger
- * /getCategoryById/{uid}:
+ * /getCategoryByName/{name}:
  *   get:
  *     summary: Obtener una categoría por ID
  *     description: Obtiene los detalles de una categoría específica por su ID.
@@ -93,7 +93,7 @@ router.get('/getCategories', getCategoriesValidator, getCategories)
  *       500:
  *         description: Error al obtener la categoría.
  */
-router.get('/getCategoryById/name', getCategoryByIdValidator, getCategoryByName)
+router.get('/getCategoryByName/:name', getCategoryByIdValidator, getCategoryByName)
 
 /**
  * @swagger

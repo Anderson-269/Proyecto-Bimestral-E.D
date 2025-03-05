@@ -1,21 +1,34 @@
 import User from "../user/user.model.js"
 
-export const isActive =  () => {
+export const isActive = () => {
     return async (req, res, next) => {
+        try {
+            const user = await User.findOne({
+                $or: [{ email: req.body.email }, { username: req.body.username }],
+            })
 
+            if (!user) {  // Verificar si el usuario no existe
+                return res.status(404).json({
+                    success: false,
+                    message: 'Usuario no encontrado',
+                })
+            }
 
-        const user =  await User.findOne({
-      $or: [{ email: req.body.email }, { username: req.body.username }],
-    });
-        
+            if (user.status !== true) {
+                return res.status(401).json({
+                    success: false,
+                    message: `Usuario desactivado, no se puede proseguir con la función`,
+                })
+            }
 
-        if(user.status != true){
-            return res.status(401).json({
+            next()
+        } catch (err) {
+            return res.status(500).json({
                 success: false,
-                message: `Usuario desactivado no se puede proseguir con la funcion`
+                message: 'Error al verificar el estado del usuario',
+                error: err.message,
             })
         }
-        next()
     }
 }
 

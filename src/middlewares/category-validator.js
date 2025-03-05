@@ -11,8 +11,6 @@ import { categoryExists } from '../helpers/db-validators.js';
 export const getCategoryByIdValidator = [
     validateJWT,
     hasRoles('ADMIN_ROLE'),
-    param('uid').isMongoId().withMessage('No es un ID válido de MongoDB'),
-    param('uid').custom(categoryExists),
     validarCampos,
     handleErrors
 ]

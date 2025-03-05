@@ -1,7 +1,7 @@
 'use strict';
 
 import { Router } from 'express';
-import { getCategories, getCategoryById, createCategory, updateCategory, deleteCategory } from './category.controller.js';
+import { getCategories, getCategoryByName, createCategory, updateCategory, deleteCategory } from './category.controller.js';
 import { getCategoriesValidator, getCategoryByIdValidator, createCategoryValidator, updateCategoryValidator, deleteCategoryValidator } from '../middlewares/category-validator.js';
 
 const router = Router();
@@ -93,7 +93,7 @@ router.get('/getCategories', getCategoriesValidator, getCategories)
  *       500:
  *         description: Error al obtener la categoría.
  */
-router.get('/getCategoryById/:uid', getCategoryByIdValidator, getCategoryById)
+router.get('/getCategoryById/name', getCategoryByIdValidator, getCategoryByName)
 
 /**
  * @swagger

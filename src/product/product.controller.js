@@ -120,7 +120,6 @@ export const getProductByName = async(req,res) =>{
         const {name} = req.body
 
         const products = await Product.find({name:name})
-
         
         return res.status(200).json({
             success: false,

@@ -43,7 +43,7 @@ const routes = (app) => {
     app.use("/onlineSale/v1/user", userRoutes);
     app.use("/onlineSale/v1/auth", authRoutes);
     app.use("/onlineSale/v1/category", categoryRoutes);
-    app.use("/onlineSale/v1/product/", poductRoutes);
+    app.use("/onlineSale/v1/product", poductRoutes);
     app.use("/onlineSale/v1/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 }
 

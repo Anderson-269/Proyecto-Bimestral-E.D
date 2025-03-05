@@ -1,0 +1,76 @@
+[{
+  "_id": {
+    "$oid": "67c77e8c2a677af8f28e07fa"
+  },
+  "name": "Ismael",
+  "username": "Z-AnD-269",
+  "password": "ziloy.ta.89",
+  "profilePicture": "la wea o lo que sea.jpg",
+  "email": "alopez-2023269rpm@gmail.com",
+  "phone": "35987452",
+  "role": "ADMIN_ROLE",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-04T22:28:28.820Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T22:43:31.393Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c786ff6f29dcd8582b8f44"
+  },
+  "name": "Pusaka",
+  "username": "Pusakaaaaaaaa",
+  "password": "Pusaka.89",
+  "profilePicture": "profile.jpg",
+  "email": "pusaka-2023343@gmail.com",
+  "phone": "35987452",
+  "role": "CLIENT_ROLE",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-04T23:04:31.444Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T23:01:06.906Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c8c8965a2fcb64e57d77db"
+  },
+  "name": "Derian",
+  "username": "Pusaka",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$ty7VL2rQNfo/GoeYQY23qw$v3qHM78xum+X7e0DKk3WAfGeXVZ9pnV1DiuBX0bbhRY",
+  "profilePicture": null,
+  "email": "pusake-2023346@gmail.com",
+  "phone": "49656514",
+  "role": "ADMIN_ROLE",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-05T21:56:38.677Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T22:57:57.822Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c8d443bac58309dec28b5f"
+  },
+  "name": "Anderson",
+  "username": "ZiloyTA59",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$kjt5SXxHNfDMAdNVJsiFjg$wLpxhRZEyvJi7h1fjqn2pO0YHYrgda77XTZIKLVP7Rw",
+  "profilePicture": "la wea o lo que sea.jpg",
+  "email": "alopez-2023269@gmail.com",
+  "phone": "35978171",
+  "role": "ADMIN_ROLE",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-05T22:46:27.550Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T22:46:27.550Z"
+  }
+}]

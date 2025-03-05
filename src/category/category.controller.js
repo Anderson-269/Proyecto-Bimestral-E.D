@@ -1,7 +1,7 @@
 'use strict';
 
 import Category from './category.model.js';
-import Product from './product.model.js';
+import Product from '../product/product.model.js';
 
 export const defaultCategory = async () => {
   const defaultCategory = {
@@ -17,7 +17,7 @@ export const defaultCategory = async () => {
 
 export const getCategoryByName = async (req, res) => {
   try {
-    const { name } = req.params;
+    const {name} = req.params;
     const category = await Category.findOne({ name })
 
     if (!category) {
@@ -44,7 +44,7 @@ export const getCategoryByName = async (req, res) => {
 export const getCategories = async (req, res) => {
   try {
     const categories = await Category.find().select("name description status")
-    
+
     return res.status(200).json({
       message: 'Lista de categorías obtenida exitosamente',
       categories,

@@ -3,6 +3,7 @@
 import { Router } from "express";
 import { register, login } from "./auth.controller.js";
 import { registerValidator, loginValidator } from "../middlewares/auth-validator.js";
+import { uploadProfilePicture } from "../middlewares/multer-upload.js";
 
 const router = Router();
 
@@ -34,7 +35,7 @@ const router = Router();
  *       400:
  *         description: Error en la solicitud
  */
-router.post("/register", registerValidator, register);
+router.post("/register",uploadProfilePicture.single("profilePicture"),registerValidator,  register)
 
 /**
  * @swagger

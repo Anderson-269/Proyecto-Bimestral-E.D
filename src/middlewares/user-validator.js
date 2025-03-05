@@ -9,14 +9,52 @@ import { hasRoles } from "./validate-roles.js";
 import { deleteFileOnError } from "./delete-file-on-error.js";
 import { isActiveParam } from "./validate-status.js";
 
-export const getUserByIdValidator = [
+//------------------------------------------------------- Validadores de Administrador --------------------------------------------------------------------//
+
+//Validador de deleteUser
+export const deleteUserValidator = [
     validateJWT,
-    hasRoles("ADMIN_ROLE", "USER_ROLE"),
+    hasRoles("ADMIN_ROLE"),
     param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"),
     validarCampos,
     handleErrors
 ]
 
+// Validador para activar un usuario
+export const validateActivateUser = [
+    validateJWT, 
+    hasRoles("ADMIN_ROLE"), 
+    param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"), 
+    validarCampos, 
+    handleErrors 
+]
+
+//validador de updateUserAdmin
+export const updateUserAdminValidator = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
+    param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"),
+    body("name").not().isEmpty().withMessage("El nombre no puede estar vacío"),
+    body("username").not().isEmpty().withMessage("El nombre de usuario no puede estar vacío"),
+    body("password").not().isEmpty().withMessage("La contraseña no puede estar vacía"),
+    body("email").not().isEmpty().isEmail().withMessage("El correo electrónico no puede estar vacío y debe ser válido"),
+    body("phone").not().isEmpty().withMessage("El teléfono no puede estar vacío"),
+    validarCampos,
+    handleErrors
+]
+
+//Validador de updateRole
+export const changeRoleValidator = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
+    isActiveParam(),
+    param("uid", "No es un ID válido").isMongoId(),
+    param("uid").custom(userExists),
+    validarCampos,
+    handleErrors
+]
+
+//Validador de getUsers
 export const getUsersValidator = [
     validateJWT,
     hasRoles("ADMIN_ROLE"),
@@ -24,16 +62,28 @@ export const getUsersValidator = [
     handleErrors
 ]
 
-export const updateUserValidator = [
+//----------------------------------------------------- Funciones Individules de Usuarios  ----------------------------------------------------------------//
+
+//Validadores de getUserById
+export const getUserByIdValidator = [
     validateJWT,
-    hasRoles("ADMIN_ROLE"),
+    hasRoles("ADMIN_ROLE", "USER_ROLE"),
     validarCampos,
     handleErrors
 ]
 
+//Validador de updateProfilePicture
+export const updateProfilePictureValidator = [
+    validateJWT,
+    validarCampos,
+    deleteFileOnError,
+    handleErrors
+]
+
+//Validador de updatePassword
 export const updatePasswordValidator = [
     validateJWT,
-    body("password").isStrongPassword({
+    body("newPassword").isStrongPassword({
         minLength: 8,
         minLowercase: 1,
         minUppercase: 1,
@@ -44,25 +94,22 @@ export const updatePasswordValidator = [
     handleErrors
 ]
 
-export const updateProfilePictureValidator = [
+//Validador de deleteAccount
+export const deleteAccountValidator = [
     validateJWT,
-    validarCampos,
-    deleteFileOnError,
-    handleErrors
-]
-
-export const deleteUserValidator = [
-    validateJWT,
+    body("password").exists().withMessage("La contraseña es obligatoria"),
     validarCampos,
     handleErrors
 ]
 
-export const changeRoleValidator = [
+// validador de updateUser
+export const updateUserValidator = [
     validateJWT,
-    hasRoles("ADMIN_ROLE"),
-    isActiveParam(),
-    param("uid", "No es un ID válido").isMongoId(),
-    param("uid").custom(userExists),
+    body("name").not().isEmpty().withMessage("El nombre no puede estar vacío"),
+    body("username").not().isEmpty().withMessage("El nombre de usuario no puede estar vacío"),
+    body("password").not().isEmpty().withMessage("La contraseña no puede estar vacía"),
+    body("email").not().isEmpty().isEmail().withMessage("El correo electrónico no puede estar vacío y debe ser válido"),
+    body("phone").not().isEmpty().withMessage("El teléfono no puede estar vacío"),
     validarCampos,
     handleErrors
 ]

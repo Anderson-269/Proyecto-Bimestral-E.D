@@ -1,0 +1,112 @@
+[{
+  "_id": {
+    "$oid": "67c8c4803aa97dd13617d124"
+  },
+  "name": "Electronicaa",
+  "description": "Dispositivos electrónicos y accesoriosssss.",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-05T21:39:12.681Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T23:22:11.141Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c8daf3ecf4f30fe8b9a210"
+  },
+  "name": "Ropa",
+  "description": "Categoría dedicada a productos de moda, ropa y accesorios.",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-05T23:14:59.798Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T23:14:59.798Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c8db0eecf4f30fe8b9a213"
+  },
+  "name": "Muebles",
+  "description": "Categoría dedicada a la venta de muebles y accesorios para el hogar.",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-05T23:15:26.897Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T23:15:26.897Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c8db19ecf4f30fe8b9a216"
+  },
+  "name": "Deportes",
+  "description": "Categoría para artículos deportivos, equipamiento y ropa de deporte.",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-05T23:15:37.041Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T23:15:37.041Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c8db23ecf4f30fe8b9a219"
+  },
+  "name": "Salud y Bienestar",
+  "description": "Categoría enfocada en productos de salud, nutrición y bienestar.",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-05T23:15:47.421Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T23:15:47.421Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c8db32ecf4f30fe8b9a21c"
+  },
+  "name": "Alimentos",
+  "description": "Categoría para la venta de alimentos, productos gourmet y snacks.",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-05T23:16:02.543Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T23:16:02.543Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c8db39ecf4f30fe8b9a21f"
+  },
+  "name": "Automóviles",
+  "description": "Categoría para la venta de vehículos, repuestos y accesorios automotrices.",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-05T23:16:09.501Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T23:16:09.501Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c8ddaaf04e7b3726147ba5"
+  },
+  "name": "Electrónica",
+  "description": "Dispositivos electrónicos y accesorios",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-03-05T23:26:34.259Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T23:26:34.259Z"
+  }
+}]
